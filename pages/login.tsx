@@ -36,7 +36,7 @@ function Login() {
 
   const handelSubmit = (e: any) => {
 
-    const tt:string= localStorage.getItem('userDetails');
+    const tt:string= localStorage.getItem('userDetails')?.toString();
 
     let data:any = JSON.parse(tt)
     console.log(data.email,'LLL');

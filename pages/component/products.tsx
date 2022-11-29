@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { getProduct } from "../network/product-get.tsx";
+import { getProduct } from "../../network/product-get.tsx";
 import { BsCartCheckFill, BsLightningFill } from "react-icons/bs";
 import Link from "next/link";
 import Header from "./header";

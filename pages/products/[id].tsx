@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getProductID } from "../network/product-get.tsx";
+import { getProductID } from "../../network/product-get.tsx";
 
 const Post = () => {
   const [list, setList] = useState([]);
