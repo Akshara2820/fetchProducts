@@ -35,6 +35,7 @@ const Post = () => {
     <CartProvider>
       
       <Root>
+        <Header/>
         <div className="sm:grid grid-cols-2 gap-10 p-10">
           <div className="">
             <Link href="/products">
@@ -61,7 +62,7 @@ const Post = () => {
                       style={{ background: "#ff9f00" }}
                     >
                       <BsCartCheckFill />
-                      <button>Add to cart</button>
+                      <button >Add to cart</button>
                     </div>
                   </div>
                   <div

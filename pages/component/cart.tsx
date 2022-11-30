@@ -2,12 +2,15 @@ import { Fragment, useContext, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { CartContext } from '../context/context'
+import {AiOutlineMinus} from 'react-icons/ai';
+import {AiOutlinePlus} from 'react-icons/ai'
 
 
 
 export default function Cart() {
   const [open, setOpen] = useState(true)
-  const { cart, setCart ,toggle,setToggle } = useContext(CartContext);
+  const { cart, setCart ,toggle,setToggle }:any = useContext(CartContext);
+  const [inputvalue,setInputValue] = useState(1)
   const total = cart.reduce((totalCost: any, { price: price }: any) => totalCost + (price), 0)
   
   console.log(total,'ooo');
@@ -73,6 +76,7 @@ export default function Cart() {
                                 </div>
 
                                 <div className="ml-4 flex flex-1 flex-col">
+
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
@@ -82,6 +86,7 @@ export default function Cart() {
                                     </div>
                                     <p className="mt-1 text-sm text-gray-500">{i.color}</p>
                                   </div>
+
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <p className="text-gray-500">Qty {i.quantity}</p>
 
@@ -101,6 +106,7 @@ export default function Cart() {
                                       </button>
                                     </div>
                                   </div>
+
                                 </div>
                               </li>
                             ))}
