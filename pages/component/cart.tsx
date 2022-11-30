@@ -9,7 +9,7 @@ import {AiOutlinePlus} from 'react-icons/ai'
 
 export default function Cart() {
   const [open, setOpen] = useState(true)
-  const { cart, setCart ,toggle,setToggle }:any = useContext(CartContext);
+  const { cart, setCart ,toggle,setToggle ,count,setCount}:any = useContext(CartContext);
   const [inputvalue,setInputValue] = useState(1)
   const total = cart.reduce((totalCost: any, { price: price }: any) => totalCost + (price), 0)
   
@@ -90,7 +90,7 @@ export default function Cart() {
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <p className="text-gray-500">Qty {i.quantity}</p>
 
-                                    <div className="flex">
+                                    <div className="flex" onClick={() => setCount(count-1)}> 
                                       <button
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"

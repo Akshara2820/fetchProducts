@@ -51,24 +51,9 @@ const Post = () => {
                   alt="logo"
                 />
                 <div className="flex gap-4 mt-4">
-                  <div>
-                    <div
-                      onClick={() => {
-                        setCart((s: any) => {
-                          return [...s, list];
-                        });
-                      }}
-                      className="flex items-center gap-2 p-2 rounded shadow-lg text-white font-bold"
-                      style={{ background: "#ff9f00" }}
-                    >
-                      <BsCartCheckFill />
-                      <button >Add to cart</button>
-                    </div>
-                  </div>
                   <div
                     className="flex items-center gap-2 p-2 rounded shadow-lg text-white font-bold"
-                    style={{ background: "#fb641b" }}
-                  >
+                    style={{ background: "#fb641b" }}>
                     <BsLightningFill />
                     <button> Buy Now</button>
                   </div>

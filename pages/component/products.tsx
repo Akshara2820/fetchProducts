@@ -7,9 +7,11 @@ import CartProvider, { CartContext } from "../context/context";
 
 function Products() {
   const [list, setList] = useState<any>([]);
- const {setCart,setSearch,search}:any = useContext(CartContext);
+ const {setCart,setSearch,search,count, setCount}:any = useContext(CartContext);
  const cart = useContext(CartContext)
-console.log(cart,"SetCart");
+
+
+console.log(count,"SetCart");
 
   const fetchAPI = async () => {
     try {
@@ -63,13 +65,8 @@ console.log(cart,"SetCart");
                   <div className="mt-4 font-bold text-[16px]">₹{i.price}</div>
                   <div className="font-semibold">{i.category}</div>
                   <div className="flex gap-4">
-                    <div>
-                      <div
-                        onClick={() => {
-                          setCart((s: any) => {
-                            return [...s, i];
-                          });
-                        }}
+                    <div onClick={() =>setCount(count+1)}>
+                      <div onClick={() => {setCart((s: any) => {return [...s, i];});} }
                         className="flex items-center gap-2 p-2 rounded shadow-lg text-white font-bold"
                         style={{ background: "#ff9f00" }}
                       >

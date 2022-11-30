@@ -20,13 +20,13 @@ const Items = [
 ];
 
 function Header() {
-  const { toggle, setToggle, search, setSearch }: any = useContext(CartContext);
+  const { toggle, setToggle, search, setSearch, count, setCount }: any =
+    useContext(CartContext);
 
   return (
     <div>
       <Contanier>
         <div className="md:flex justify-between ">
-          
           <div className="logo">
             <img src="../images/img.png" alt="logo" />
           </div>
@@ -56,12 +56,16 @@ function Header() {
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-            <div
-              className="text-[24px] bg-slate-100 border p-2 rounded shadow-lg w-14 sm:mt-0 mt-2"
-              onClick={() => setToggle(true)}
-            >
-              <ImCart />
+
+            <div>
+              <div
+                className="text-[24px] bg-slate-100 border p-2 rounded shadow-lg w-14 sm:mt-0 mt-2"
+                onClick={() => setToggle(true)}>
+                <ImCart />
+              </div>
+              <div className="bg-red-600 text-center w-6 rounded-full absolute z-10 -mt-12 ml-10 text-white font-bold">{count}</div>
             </div>
+
             <Link href="/">
               <div className="text-[24px] bg-slate-100 border p-2 rounded shadow-lg w-14 sm:mt-0 mt-2">
                 <BiLogInCircle />
