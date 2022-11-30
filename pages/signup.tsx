@@ -13,6 +13,7 @@ function SignUp() {
   const [errorEmail, setErrorEmail] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const [load, setLoad] = useState(false);
+  
   const obj: any = { email: email, password: password ,token:name+password,name:name};
 
   function isValidEmail(email_: string) {

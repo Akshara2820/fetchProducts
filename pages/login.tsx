@@ -23,7 +23,7 @@ function Login() {
     if (!isValidEmail(e.target.value)) {
       setErrorEmail("Email is invalid");
     } else {
-      setCheckEmail('valid');
+      setCheckEmail(<FaCheck/>);
       setLoad(true);
     }
 
@@ -75,7 +75,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="flex justify-between mt-4">
+          <div className="sm:flex justify-between mt-4">
             <div className="flex gap-3">
               <input type="checkbox" />
               <p>Remember me</p>
@@ -142,6 +142,16 @@ export const Contanier = styled.div`
   margin: auto;
   margin-top: 10%;
   margin-bottom: 10%;
+  @media (max-width:1024px){
+    width:50%
+  }
+  @media (max-width:768px){
+    width:70%
+  }
+
+  @media (max-width:455px){
+    width:90%
+  }
   .input {
     padding: 11px 20px 9px;
     font-size: 16px;

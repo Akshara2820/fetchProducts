@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { getProduct } from "../../network/product-get.tsx";
 import { BsCartCheckFill, BsLightningFill } from "react-icons/bs";
-import Link from "next/link";
 import Header from "./header";
+import CartProvider, { CartContext } from "../context/context";
 
 function Products() {
   const [list, setList] = useState<any>([]);
-  const [cart, setCart] = useState<any>([]);
+ const {setCart,setSearch,search}:any = useContext(CartContext);
+ const cart = useContext(CartContext)
+console.log(cart,"SetCart");
 
   const fetchAPI = async () => {
     try {
@@ -27,9 +29,15 @@ function Products() {
       <Header />
       <Root>
         <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-5">
-          {list.map((i: any) => {
+          {list.filter((i:any) =>{
+            if (search === ''){
+              return i;
+            } else if (i.category.toLowerCase().includes(search.toLowerCase())) {
+              return i;
+            }
+          }).map((i: any,index:any) => {
             return (
-              <div key={i.id}>
+              <div key={index}>
                 <div className="card">
                   <a href={`products/${i.id}`}>
                     <div className="contanier">
@@ -73,7 +81,7 @@ function Products() {
                       className="flex items-center gap-2 p-2 rounded shadow-lg text-white font-bold"
                       style={{ background: "#fb641b" }}
                     >
-                      <BsLightningFill />
+                      <BsLightningFill /> 
                       <button> Buy Now</button>
                     </div>
                   </div>
@@ -81,6 +89,8 @@ function Products() {
               </div>
             );
           })}
+
+
         </div>
       </Root>
     </div>
@@ -91,10 +101,11 @@ export default Products;
 
 const Root = styled.div`
   margin: auto;
-
-  margin-top: 10%;
-  margin-bottom: 10%;
   padding: 30px;
+  width: 82%;
+  padding-top: 100px;
+  cursor: pointer;
+  
 
   .contanier {
     position: relative;
@@ -102,9 +113,14 @@ const Root = styled.div`
   }
   .card {
     background-color: white;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 12px;
     margin: auto;
     height: 100%;
-    padding: 10px;
+    padding: 20px;
   }
+  .card:hover{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    transition: 0.4s;
+  }
+  
 `;
