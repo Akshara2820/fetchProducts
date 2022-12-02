@@ -33,9 +33,9 @@ const Post = () => {
 
   return (
     <CartProvider>
-      
+      <Header/>
       <Root>
-        <Header/>
+        
         <div className="sm:grid grid-cols-2 gap-10 p-10">
           <div className="">
             <Link href="/products">

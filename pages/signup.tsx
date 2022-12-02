@@ -60,7 +60,7 @@ function SignUp() {
       setLoading(true);
       if (load) {
         Router.push("/products");
-      }else{
+      } else {
         setLoading(false);
       }
     }

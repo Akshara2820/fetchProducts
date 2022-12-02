@@ -7,11 +7,20 @@ import CartProvider, { CartContext } from "../context/context";
 
 function Products() {
   const [list, setList] = useState<any>([]);
- const {setCart,setSearch,search,count, setCount}:any = useContext(CartContext);
- const cart = useContext(CartContext)
+  const {
+    setCart,
+    setSearch,
+    search,
+    count,
+    setCount,
+    countItem,
+    setCountItem,
+  }: any = useContext(CartContext);
+  const cart = useContext(CartContext);
+
+  console.log(count, "SetCart");
 
 
-console.log(count,"SetCart");
 
   const fetchAPI = async () => {
     try {
@@ -26,68 +35,84 @@ console.log(count,"SetCart");
     fetchAPI();
   }, []);
 
+
+  // useEffect (() =>{
+  //   setCount(cart.length)
+  //   console.log(count,'count');
+    
+  // },[])
   return (
     <div>
       <Header />
       <Root>
         <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-5">
-          {list.filter((i:any) =>{
-            if (search === ''){
-              return i;
-            } else if (i.category.toLowerCase().includes(search.toLowerCase())) {
-              return i;
-            }
-          }).map((i: any,index:any) => {
-            return (
-              <div key={index}>
-                <div className="card">
-                  <a href={`products/${i.id}`}>
-                    <div className="contanier">
-                      <div className="h-80 ">
-                        <img
-                          className="w-full h-full object-contain"
-                          src={i.image}
-                        />
+          {list
+            .filter((i: any) => {
+              if (search === "") {
+                return i;
+              } else if (
+                i.category.toLowerCase().includes(search.toLowerCase())
+              ) {
+                return i;
+              }
+            })
+            .map((i: any, index: any) => {
+              return (
+                <div key={index}>
+                  <div className="card">
+                    <a href={`products/${i.id}`}>
+                      <div className="contanier">
+                        <div className="h-80 ">
+                          <img
+                            className="w-full h-full object-contain"
+                            src={i.image}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </a>
+                    </a>
 
-                  <div className="mt-6"> {i.title}</div>
-                  <div className="flex gap-2 items-center ">
-                    <div className="mt-2 bg-green-700 px-3 text-white rounded-sm shadow-lg">
-                      {i.rating.rate} ✰
-                    </div>
-                    <div className="mt-2">({i.rating.count})</div>
-                    <div className="mt-2 w-20 ">
-                      <img src="./images/img.png" alt="logo" />
-                    </div>
-                  </div>
-                  <div className="mt-4 font-bold text-[16px]">₹{i.price}</div>
-                  <div className="font-semibold">{i.category}</div>
-                  <div className="flex gap-4">
-                    <div onClick={() =>setCount(count+1)}>
-                      <div onClick={() => {setCart((s: any) => {return [...s, i];});} }
-                        className="flex items-center gap-2 p-2 rounded shadow-lg text-white font-bold"
-                        style={{ background: "#ff9f00" }}
-                      >
-                        <BsCartCheckFill />
-                        <button>Add to cart</button>
+                    <div className="mt-6"> {i.title}</div>
+                    <div className="flex gap-2 items-center ">
+                      <div className="mt-2 bg-green-700 px-3 text-white rounded-sm shadow-lg">
+                        {i.rating.rate} ✰
+                      </div>
+                      <div className="mt-2">({i.rating.count})</div>
+                      <div className="mt-2 w-20 ">
+                        <img src="./images/img.png" alt="logo" />
                       </div>
                     </div>
-                    <div
-                      className="flex items-center gap-2 p-2 rounded shadow-lg text-white font-bold"
-                      style={{ background: "#fb641b" }}
-                    >
-                      <BsLightningFill /> 
-                      <button> Buy Now</button>
+                    <div className="mt-4 font-bold text-[16px]">₹{i.price}</div>
+                    <div className="font-semibold">{i.category}</div>
+                    <div className="flex gap-4">
+                      
+                      <div >
+                        <div onClick={() => setCount(count + 1)} >
+                        
+                        <div
+                          onClick={() => {
+                            setCart((s: any) => {
+                              return [...s, i];
+                            });
+                          }}
+                          className="flex items-center gap-2 p-2 rounded shadow-lg text-white font-bold"
+                          style={{ background: "#ff9f00" }}>
+                          <BsCartCheckFill />
+                          <button>Add to cart</button>
+                        </div>
+                        </div>
+                      </div>
+                      <div
+                        className="flex items-center gap-2 p-2 rounded shadow-lg text-white font-bold"
+                        style={{ background: "#fb641b" }}
+                      >
+                        <BsLightningFill />
+                        <button> Buy Now</button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-
-
+              );
+            })}
         </div>
       </Root>
     </div>
@@ -102,7 +127,15 @@ const Root = styled.div`
   width: 82%;
   padding-top: 100px;
   cursor: pointer;
-  
+  @media (max-width: 770px) {
+    padding: 10px;
+    width: 90%;
+  }
+
+  @media (max-width: 430px) {
+    padding: 10px;
+    width: 100%;
+  }
 
   .contanier {
     position: relative;
@@ -115,9 +148,8 @@ const Root = styled.div`
     height: 100%;
     padding: 20px;
   }
-  .card:hover{
+  .card:hover {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     transition: 0.4s;
   }
-  
 `;

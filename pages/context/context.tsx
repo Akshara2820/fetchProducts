@@ -7,8 +7,10 @@ function CartProvider(props:any) {
     const [toggle,setToggle] = useState(false)
     const [search,setSearch] = useState('')
     const [count, setCount] =  useState(0)
+    const [countItem , setCountItem] = useState(0)
+    const [isLoggedin, setIsLoggedIn] = useState(false);
   return (
-    <CartContext.Provider value={{cart,setCart,toggle,setToggle,search,setSearch,count, setCount}}>
+    <CartContext.Provider value={{cart,setCart,toggle,setToggle,search,setSearch,count, setCount, countItem , setCountItem,isLoggedin, setIsLoggedIn}}>
       {props.children}
     </CartContext.Provider>
   )

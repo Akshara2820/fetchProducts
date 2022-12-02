@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect, } from "react";
 import styled from "styled-components";
 import { FaFacebookF, FaLinkedinIn, FaGoogle, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
 import { FaCheck } from "react-icons/fa";
 import validator from "validator";
 import Router from 'next/router';
+import { CartContext } from "./context/context";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,6 +15,8 @@ function Login() {
   const [checkEmail, setCheckEmail] = useState("");
   const [load, setLoad] = useState(false);
   const obj: any = { email: email, password: password };
+  const { isLoggedin, setIsLoggedIn }: any =
+  useContext(CartContext);
 
   function isValidEmail(email_: string) {
     setEmail(email_);
@@ -31,6 +34,9 @@ function Login() {
   };
   // const data = localStorage.getItem('userDetails');
 
+  useEffect(() =>{
+    setIsLoggedIn(true)
+  },[])
   
   
 
